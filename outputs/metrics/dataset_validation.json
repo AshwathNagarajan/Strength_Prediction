@@ -1,0 +1,95 @@
+{
+  "rows": 2000,
+  "columns": 5,
+  "selected_columns": [
+    "w/b Ratio",
+    "Fly Ash (%)",
+    "GGBS (%)",
+    "Recycled Aggregate (%)",
+    "Compressive Strength fc' (MPa)"
+  ],
+  "source_column_mapping": {
+    "w/b Ratio": "w/b Ratio",
+    "Fly Ash (%)": "Fly Ash (%)",
+    "GGBS (%)": "GGBS (%)",
+    "Recycled Aggregate (%)": "Recycled Agg. (%)",
+    "Compressive Strength fc' (MPa)": "Compressive Strength fc' (MPa)"
+  },
+  "dtypes": {
+    "w/b Ratio": "float64",
+    "Fly Ash (%)": "float64",
+    "GGBS (%)": "float64",
+    "Recycled Aggregate (%)": "float64",
+    "Compressive Strength fc' (MPa)": "float64"
+  },
+  "missing_values": {
+    "w/b Ratio": 0,
+    "Fly Ash (%)": 0,
+    "GGBS (%)": 0,
+    "Recycled Aggregate (%)": 0,
+    "Compressive Strength fc' (MPa)": 0
+  },
+  "duplicate_records": 0,
+  "statistics": {
+    "w/b Ratio": {
+      "count": 2000.0,
+      "mean": 0.41612,
+      "std": 0.07808965742848825,
+      "min": 0.28,
+      "25%": 0.35,
+      "50%": 0.42,
+      "75%": 0.49,
+      "max": 0.55
+    },
+    "Fly Ash (%)": {
+      "count": 2000.0,
+      "mean": 22.571050000000003,
+      "std": 12.98518904231788,
+      "min": 0.1,
+      "25%": 11.4,
+      "50%": 22.9,
+      "75%": 33.8,
+      "max": 45.0
+    },
+    "GGBS (%)": {
+      "count": 2000.0,
+      "mean": 24.856099999999998,
+      "std": 14.285771047346678,
+      "min": 0.0,
+      "25%": 12.6,
+      "50%": 24.5,
+      "75%": 37.0,
+      "max": 50.0
+    },
+    "Recycled Aggregate (%)": {
+      "count": 2000.0,
+      "mean": 50.717949999999995,
+      "std": 28.698547630769713,
+      "min": 0.0,
+      "25%": 26.0,
+      "50%": 51.75,
+      "75%": 75.525,
+      "max": 99.8
+    },
+    "Compressive Strength fc' (MPa)": {
+      "count": 2000.0,
+      "mean": 55.3201,
+      "std": 17.394841943896083,
+      "min": 25.0,
+      "25%": 40.4,
+      "50%": 55.75,
+      "75%": 70.225,
+      "max": 85.0
+    }
+  },
+  "target_distribution": {
+    "count": 2000.0,
+    "mean": 55.3201,
+    "std": 17.394841943896083,
+    "min": 25.0,
+    "25%": 40.4,
+    "50%": 55.75,
+    "75%": 70.225,
+    "max": 85.0
+  }
+}

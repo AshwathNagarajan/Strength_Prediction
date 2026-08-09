@@ -1,0 +1,18 @@
+{
+  "w/b Ratio": {
+    "min": 0.28,
+    "max": 0.55
+  },
+  "Fly Ash (%)": {
+    "min": 0.1,
+    "max": 45.0
+  },
+  "GGBS (%)": {
+    "min": 0.0,
+    "max": 50.0
+  },
+  "Recycled Aggregate (%)": {
+    "min": 0.0,
+    "max": 99.6
+  }
+}

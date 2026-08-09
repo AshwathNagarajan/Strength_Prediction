@@ -1,0 +1,67 @@
+{
+  "best_model": "CatBoost",
+  "xgboost": {
+    "r2": -0.04820428935824239,
+    "mae": 15.655489631652834,
+    "rmse": 18.217498551814803
+  },
+  "catboost": {
+    "r2": -0.013325090964326547,
+    "mae": 15.46596779944682,
+    "rmse": 17.91183894361282
+  },
+  "cross_validation": {
+    "XGBoost": {
+      "cv_r2_mean": -0.03364946843451162,
+      "cv_r2_std": 0.019133747793735004,
+      "cv_mae_mean": 14.974443592548372,
+      "cv_rmse_mean": 17.558643627325516
+    },
+    "CatBoost": {
+      "cv_r2_mean": -0.01377912048717982,
+      "cv_r2_std": 0.007428478310723095,
+      "cv_mae_mean": 14.907266651475377,
+      "cv_rmse_mean": 17.388064377093013
+    }
+  },
+  "best_params": {
+    "XGBoost": {
+      "colsample_bytree": 0.7046909220223582,
+      "learning_rate": 0.06580817768476435,
+      "max_depth": 2,
+      "min_child_weight": 4,
+      "n_estimators": 285,
+      "reg_alpha": 0.0027610585618011996,
+      "reg_lambda": 2.1309228569096685,
+      "subsample": 0.9120572031542851
+    },
+    "CatBoost": {
+      "bagging_temperature": 0.3854165025399161,
+      "depth": 3,
+      "iterations": 252,
+      "l2_leaf_reg": 2.847150604977192,
+      "learning_rate": 0.0439230559231214,
+      "random_strength": 1.3665270376509164
+    }
+  },
+  "dataset": {
+    "path": "D:\\Civil-II\\data\\dataset_span_mm.csv",
+    "rows_used_after_preprocessing": 2000,
+    "train_rows": 1600,
+    "test_rows": 400,
+    "features": [
+      "w/b Ratio",
+      "Fly Ash (%)",
+      "GGBS (%)",
+      "Recycled Aggregate (%)"
+    ],
+    "target": "Compressive Strength fc' (MPa)",
+    "source_column_mapping": {
+      "w/b Ratio": "w/b Ratio",
+      "Fly Ash (%)": "Fly Ash (%)",
+      "GGBS (%)": "GGBS (%)",
+      "Recycled Aggregate (%)": "Recycled Agg. (%)",
+      "Compressive Strength fc' (MPa)": "Compressive Strength fc' (MPa)"
+    }
+  }
+}
