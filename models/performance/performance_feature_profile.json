@@ -1,0 +1,61 @@
+{
+  "numeric_ranges": {
+    "Compressive Strength fc' (MPa)": {
+      "min": 25.0,
+      "max": 85.0
+    },
+    "Modulus Ec (MPa)": {
+      "min": 28960.0,
+      "max": 41807.0
+    },
+    "w/b Ratio": {
+      "min": 0.28,
+      "max": 0.55
+    },
+    "Fly Ash (%)": {
+      "min": 0.1,
+      "max": 45.0
+    },
+    "GGBS (%)": {
+      "min": 0.0,
+      "max": 50.0
+    },
+    "Recycled Aggregate (%)": {
+      "min": 0.0,
+      "max": 99.8
+    },
+    "Yield Strength fy (MPa)": {
+      "min": 275.0,
+      "max": 690.0
+    },
+    "Stud Dia. ds (mm)": {
+      "min": 16.0,
+      "max": 22.0
+    },
+    "Span L (mm)": {
+      "min": 914.4,
+      "max": 2133.6
+    },
+    "Beam Depth h (mm)": {
+      "min": 46.94,
+      "max": 133.81
+    },
+    "Slab Thickness hc (mm)": {
+      "min": 100.0,
+      "max": 200.0
+    }
+  },
+  "categorical_values": {
+    "Steel Grade": [
+      "S275",
+      "S355",
+      "S460",
+      "S690"
+    ],
+    "Shear Connector Type": [
+      "Angle Connector",
+      "Headed Stud",
+      "Perfobond Ribbon"
+    ]
+  }
+}

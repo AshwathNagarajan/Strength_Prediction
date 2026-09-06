@@ -1,0 +1,178 @@
+{
+  "dataset": {
+    "path": "D:\\Civil-II\\data\\ScienceDirect_Optimized_SpanLength_With_ConcreteGrade.xlsx",
+    "rows_used_after_preprocessing": 2000,
+    "features": [
+      "Compressive Strength fc' (MPa)",
+      "Modulus Ec (MPa)",
+      "w/b Ratio",
+      "Fly Ash (%)",
+      "GGBS (%)",
+      "Recycled Aggregate (%)",
+      "Yield Strength fy (MPa)",
+      "Stud Dia. ds (mm)",
+      "Span L (mm)",
+      "Beam Depth h (mm)",
+      "Slab Thickness hc (mm)",
+      "Steel Grade",
+      "Shear Connector Type"
+    ],
+    "numeric_features": [
+      "Compressive Strength fc' (MPa)",
+      "Modulus Ec (MPa)",
+      "w/b Ratio",
+      "Fly Ash (%)",
+      "GGBS (%)",
+      "Recycled Aggregate (%)",
+      "Yield Strength fy (MPa)",
+      "Stud Dia. ds (mm)",
+      "Span L (mm)",
+      "Beam Depth h (mm)",
+      "Slab Thickness hc (mm)"
+    ],
+    "categorical_features": [
+      "Steel Grade",
+      "Shear Connector Type"
+    ],
+    "targets": {
+      "ultimate_load": {
+        "column": "Target: Capacity Pu (kN)",
+        "label": "Ultimate Load",
+        "unit": "kN"
+      },
+      "deflection": {
+        "column": "Target: Deflection \u03b4 (mm)",
+        "label": "Deflection",
+        "unit": "mm"
+      }
+    },
+    "source_column_mapping": {
+      "Compressive Strength fc' (MPa)": "Compressive Strength fc' (MPa)",
+      "Modulus Ec (MPa)": "Modulus Ec (MPa)",
+      "w/b Ratio": "w/b Ratio",
+      "Fly Ash (%)": "Fly Ash (%)",
+      "GGBS (%)": "GGBS (%)",
+      "Recycled Aggregate (%)": "Recycled Agg. (%)",
+      "Yield Strength fy (MPa)": "Yield Strength fy (MPa)",
+      "Stud Dia. ds (mm)": "Stud Dia. ds (mm)",
+      "Span L (mm)": "Span L (mm)",
+      "Beam Depth h (mm)": "Beam Depth h (mm)",
+      "Slab Thickness hc (mm)": "Slab Thickness hc (mm)",
+      "Steel Grade": "Steel Grade",
+      "Shear Connector Type": "Shear Connector Type",
+      "Target: Capacity Pu (kN)": "Target: Capacity Pu (kN)",
+      "Target: Deflection \u03b4 (mm)": "Target: Deflection \u03b4 (mm)"
+    },
+    "excluded_leakage_columns": [
+      "Target: Capacity Pu (kN)",
+      "Target: Deflection \u03b4 (mm)",
+      "Target: Shear Qu (kN)",
+      "Target: Failure Mode",
+      "Concrete GWP (kg CO2e/m3)"
+    ]
+  },
+  "targets": {
+    "ultimate_load": {
+      "best_model": "XGBoost",
+      "metrics": {
+        "XGBoost": {
+          "r2": 0.9979733866589426,
+          "mae": 107.70253222656251,
+          "rmse": 145.31809702102217
+        },
+        "CatBoost": {
+          "r2": 0.9969618386555823,
+          "mae": 135.44601137266912,
+          "rmse": 177.92610442984247
+        }
+      },
+      "cross_validation": {
+        "XGBoost": {
+          "cv_r2_mean": 0.9976099869417713,
+          "cv_r2_std": 0.0002356943639800757,
+          "cv_mae_mean": 108.70027526855469,
+          "cv_rmse_mean": 148.87040156007944
+        },
+        "CatBoost": {
+          "cv_r2_mean": 0.9964939083547169,
+          "cv_r2_std": 0.0005176106026522403,
+          "cv_mae_mean": 134.88270856111066,
+          "cv_rmse_mean": 179.98213781752528
+        }
+      },
+      "best_params": {
+        "XGBoost": {
+          "colsample_bytree": 0.9486212527455787,
+          "learning_rate": 0.05781039920323071,
+          "max_depth": 5,
+          "min_child_weight": 4,
+          "n_estimators": 529,
+          "reg_alpha": 0.13799959101127168,
+          "reg_lambda": 1.0925470114081648,
+          "subsample": 0.7495800817189007
+        },
+        "CatBoost": {
+          "bagging_temperature": 0.3745401188473625,
+          "depth": 6,
+          "iterations": 470,
+          "l2_leaf_reg": 6.855951534491241,
+          "learning_rate": 0.08683901810364439,
+          "random_strength": 0.31203728088487304
+        }
+      },
+      "train_rows": 1600,
+      "test_rows": 400
+    },
+    "deflection": {
+      "best_model": "CatBoost",
+      "metrics": {
+        "XGBoost": {
+          "r2": 0.9374757782957742,
+          "mae": 0.2553560997962952,
+          "rmse": 0.3346161340391875
+        },
+        "CatBoost": {
+          "r2": 0.9390557928590534,
+          "mae": 0.2528851895614047,
+          "rmse": 0.33036113220150287
+        }
+      },
+      "cross_validation": {
+        "XGBoost": {
+          "cv_r2_mean": 0.9337167240584481,
+          "cv_r2_std": 0.0064798932784006676,
+          "cv_mae_mean": 0.2610696551203727,
+          "cv_rmse_mean": 0.32726659771461664
+        },
+        "CatBoost": {
+          "cv_r2_mean": 0.9343090870879566,
+          "cv_r2_std": 0.005060230811427116,
+          "cv_mae_mean": 0.25823100895745793,
+          "cv_rmse_mean": 0.32590474338200803
+        }
+      },
+      "best_params": {
+        "XGBoost": {
+          "colsample_bytree": 0.9896896099223678,
+          "learning_rate": 0.11200768177397533,
+          "max_depth": 2,
+          "min_child_weight": 2,
+          "n_estimators": 202,
+          "reg_alpha": 0.1154469128110745,
+          "reg_lambda": 0.9820509320520234,
+          "subsample": 0.9049790556476374
+        },
+        "CatBoost": {
+          "bagging_temperature": 0.8331949117361643,
+          "depth": 4,
+          "iterations": 405,
+          "l2_leaf_reg": 4.128484860585926,
+          "learning_rate": 0.03686833053456748,
+          "random_strength": 1.510722820635305
+        }
+      },
+      "train_rows": 1600,
+      "test_rows": 400
+    }
+  }
+}

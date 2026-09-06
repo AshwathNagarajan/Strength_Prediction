@@ -14,7 +14,7 @@ FIGURES_DIR = OUTPUT_DIR / "figures"
 METRICS_DIR = OUTPUT_DIR / "metrics"
 SHAP_DIR = OUTPUT_DIR / "shap"
 
-DATASET_PATH = DATA_DIR / "dataset_span_mm.csv"
+DATASET_PATH = DATA_DIR / "ScienceDirect_Optimized_SpanLength_With_ConcreteGrade.xlsx"
 
 FEATURES = [
     "w/b Ratio",
@@ -31,4 +31,3 @@ MODEL_FILES = {
 BEST_MODEL_FILE = MODEL_DIR / "best_model.pkl"
 METADATA_FILE = MODEL_DIR / "model_metadata.json"
 FEATURE_RANGES_FILE = MODEL_DIR / "feature_ranges.json"
-

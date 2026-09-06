@@ -1,0 +1,218 @@
+{
+  "rows": 2000,
+  "columns": 15,
+  "selected_columns": [
+    "Compressive Strength fc' (MPa)",
+    "Modulus Ec (MPa)",
+    "w/b Ratio",
+    "Fly Ash (%)",
+    "GGBS (%)",
+    "Recycled Aggregate (%)",
+    "Yield Strength fy (MPa)",
+    "Stud Dia. ds (mm)",
+    "Span L (mm)",
+    "Beam Depth h (mm)",
+    "Slab Thickness hc (mm)",
+    "Steel Grade",
+    "Shear Connector Type",
+    "Target: Capacity Pu (kN)",
+    "Target: Deflection \u03b4 (mm)"
+  ],
+  "source_column_mapping": {
+    "Compressive Strength fc' (MPa)": "Compressive Strength fc' (MPa)",
+    "Modulus Ec (MPa)": "Modulus Ec (MPa)",
+    "w/b Ratio": "w/b Ratio",
+    "Fly Ash (%)": "Fly Ash (%)",
+    "GGBS (%)": "GGBS (%)",
+    "Recycled Aggregate (%)": "Recycled Agg. (%)",
+    "Yield Strength fy (MPa)": "Yield Strength fy (MPa)",
+    "Stud Dia. ds (mm)": "Stud Dia. ds (mm)",
+    "Span L (mm)": "Span L (mm)",
+    "Beam Depth h (mm)": "Beam Depth h (mm)",
+    "Slab Thickness hc (mm)": "Slab Thickness hc (mm)",
+    "Steel Grade": "Steel Grade",
+    "Shear Connector Type": "Shear Connector Type",
+    "Target: Capacity Pu (kN)": "Target: Capacity Pu (kN)",
+    "Target: Deflection \u03b4 (mm)": "Target: Deflection \u03b4 (mm)"
+  },
+  "dtypes": {
+    "Compressive Strength fc' (MPa)": "float64",
+    "Modulus Ec (MPa)": "int64",
+    "w/b Ratio": "float64",
+    "Fly Ash (%)": "float64",
+    "GGBS (%)": "float64",
+    "Recycled Aggregate (%)": "float64",
+    "Yield Strength fy (MPa)": "int64",
+    "Stud Dia. ds (mm)": "int64",
+    "Span L (mm)": "float64",
+    "Beam Depth h (mm)": "float64",
+    "Slab Thickness hc (mm)": "int64",
+    "Steel Grade": "object",
+    "Shear Connector Type": "object",
+    "Target: Capacity Pu (kN)": "float64",
+    "Target: Deflection \u03b4 (mm)": "float64"
+  },
+  "missing_values": {
+    "Compressive Strength fc' (MPa)": 0,
+    "Modulus Ec (MPa)": 0,
+    "w/b Ratio": 0,
+    "Fly Ash (%)": 0,
+    "GGBS (%)": 0,
+    "Recycled Aggregate (%)": 0,
+    "Yield Strength fy (MPa)": 0,
+    "Stud Dia. ds (mm)": 0,
+    "Span L (mm)": 0,
+    "Beam Depth h (mm)": 0,
+    "Slab Thickness hc (mm)": 0,
+    "Steel Grade": 0,
+    "Shear Connector Type": 0,
+    "Target: Capacity Pu (kN)": 0,
+    "Target: Deflection \u03b4 (mm)": 0
+  },
+  "duplicate_records": 0,
+  "numeric_statistics": {
+    "Compressive Strength fc' (MPa)": {
+      "count": 2000.0,
+      "mean": 55.3201,
+      "std": 17.394841943896083,
+      "min": 25.0,
+      "25%": 40.4,
+      "50%": 55.75,
+      "75%": 70.225,
+      "max": 85.0
+    },
+    "Modulus Ec (MPa)": {
+      "count": 2000.0,
+      "mean": 36337.663,
+      "std": 3645.8915141426587,
+      "min": 28960.0,
+      "25%": 33445.0,
+      "50%": 36838.0,
+      "75%": 39479.25,
+      "max": 41807.0
+    },
+    "w/b Ratio": {
+      "count": 2000.0,
+      "mean": 0.41612,
+      "std": 0.07808965742848825,
+      "min": 0.28,
+      "25%": 0.35,
+      "50%": 0.42,
+      "75%": 0.49,
+      "max": 0.55
+    },
+    "Fly Ash (%)": {
+      "count": 2000.0,
+      "mean": 22.571050000000003,
+      "std": 12.98518904231788,
+      "min": 0.1,
+      "25%": 11.4,
+      "50%": 22.9,
+      "75%": 33.8,
+      "max": 45.0
+    },
+    "GGBS (%)": {
+      "count": 2000.0,
+      "mean": 24.856099999999998,
+      "std": 14.285771047346678,
+      "min": 0.0,
+      "25%": 12.6,
+      "50%": 24.5,
+      "75%": 37.0,
+      "max": 50.0
+    },
+    "Recycled Aggregate (%)": {
+      "count": 2000.0,
+      "mean": 50.717949999999995,
+      "std": 28.698547630769713,
+      "min": 0.0,
+      "25%": 26.0,
+      "50%": 51.75,
+      "75%": 75.525,
+      "max": 99.8
+    },
+    "Yield Strength fy (MPa)": {
+      "count": 2000.0,
+      "mean": 394.4425,
+      "std": 115.27584722840736,
+      "min": 275.0,
+      "25%": 355.0,
+      "50%": 355.0,
+      "75%": 460.0,
+      "max": 690.0
+    },
+    "Stud Dia. ds (mm)": {
+      "count": 2000.0,
+      "mean": 18.796,
+      "std": 1.8788690945718565,
+      "min": 16.0,
+      "25%": 16.0,
+      "50%": 19.0,
+      "75%": 20.0,
+      "max": 22.0
+    },
+    "Span L (mm)": {
+      "count": 2000.0,
+      "mean": 1531.138416,
+      "std": 263.1954479967274,
+      "min": 914.4,
+      "25%": 1344.1680000000001,
+      "50%": 1537.716,
+      "75%": 1716.024,
+      "max": 2133.6
+    },
+    "Beam Depth h (mm)": {
+      "count": 2000.0,
+      "mean": 85.45231,
+      "std": 15.856169225735377,
+      "min": 46.94,
+      "25%": 74.37,
+      "50%": 84.73,
+      "75%": 96.32,
+      "max": 133.81
+    },
+    "Slab Thickness hc (mm)": {
+      "count": 2000.0,
+      "mean": 149.763,
+      "std": 28.698826497283136,
+      "min": 100.0,
+      "25%": 124.0,
+      "50%": 150.0,
+      "75%": 174.0,
+      "max": 200.0
+    },
+    "Target: Capacity Pu (kN)": {
+      "count": 2000.0,
+      "mean": 10337.59595,
+      "std": 3088.9291508722163,
+      "min": 4522.0,
+      "25%": 8134.325,
+      "50%": 9886.5,
+      "75%": 12113.85,
+      "max": 18708.7
+    },
+    "Target: Deflection \u03b4 (mm)": {
+      "count": 2000.0,
+      "mean": 7.339839999999999,
+      "std": 1.2875583783614801,
+      "min": 4.05,
+      "25%": 6.422499999999999,
+      "50%": 7.365,
+      "75%": 8.23,
+      "max": 11.03
+    }
+  },
+  "categorical_values": {
+    "Steel Grade": [
+      "S275",
+      "S355",
+      "S460",
+      "S690"
+    ],
+    "Shear Connector Type": [
+      "Angle Connector",
+      "Headed Stud",
+      "Perfobond Ribbon"
+    ]
+  }
+}

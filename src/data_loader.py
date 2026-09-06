@@ -64,10 +64,16 @@ def resolve_columns(df: pd.DataFrame) -> dict[str, str]:
 
 
 def load_dataset(dataset_path: Path) -> tuple[pd.DataFrame, dict[str, str]]:
-    """Load CSV data and rename required columns to canonical names."""
+    """Load tabular data and rename required columns to canonical names."""
     if not dataset_path.exists():
         raise FileNotFoundError(f"Dataset not found: {dataset_path}")
-    df = pd.read_csv(dataset_path)
+    suffix = dataset_path.suffix.lower()
+    if suffix == ".csv":
+        df = pd.read_csv(dataset_path)
+    elif suffix in {".xlsx", ".xls"}:
+        df = pd.read_excel(dataset_path)
+    else:
+        raise ValueError(f"Unsupported dataset format: {dataset_path.suffix}. Use CSV or Excel.")
     mapping = resolve_columns(df)
     selected_actual = [mapping[name] for name in FEATURES + [TARGET]]
     data = df[selected_actual].rename(columns={actual: canonical for canonical, actual in mapping.items()})
@@ -95,4 +101,3 @@ def validate_dataset(data: pd.DataFrame, column_mapping: dict[str, str]) -> dict
     logging.info("Missing values: %s", report["missing_values"])
     logging.info("Duplicate selected records: %s", report["duplicate_records"])
     return report
-

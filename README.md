@@ -1,106 +1,104 @@
-# Development of AI-Driven Support System for Performance Prediction and Material Optimization of Sustainable Steel-Concrete Composite Structures
+# AI-Driven Support System for Sustainable Steel-Concrete Composite Structures
 
-## Review 1 Scope
+## Review Scope
 
-This implementation covers only the **Compressive Strength Prediction Module**.
+This review implementation covers **prediction and explainable AI only**.
 
-Implemented workflow:
+Implemented:
 
-Material Inputs -> XGBoost + CatBoost -> Compressive Strength Prediction -> Best Model Selection -> SHAP Explainability
+- Ultimate load prediction
+- Deflection prediction
+- XGBoost vs CatBoost model comparison
+- Automatic best-model selection for each target
+- SHAP global feature importance
+- SHAP local explanation for each user prediction
+- Streamlit GUI
 
-Not included yet: material optimization, target-strength inverse design, structural capacity prediction, shear prediction, deflection prediction, genetic algorithms, GWP optimization, or full steel-concrete structural optimization.
+Not implemented in this review:
 
-## Objective
+- Material optimization
+- Target-performance inverse design
+- Genetic algorithms
+- GWP optimization
+- Shear prediction
+- Failure-mode classification
 
-Predict **Compressive Strength fc' (MPa)** from sustainable concrete material parameters using two machine-learning regressors and explain the prediction with SHAP.
+## Default Dataset
+
+The default dataset is:
+
+```text
+data/ScienceDirect_Optimized_SpanLength_With_ConcreteGrade.xlsx
+```
+
+The older `data/dataset_span_mm.csv` file was removed. The loader supports Excel and CSV files, but this Excel workbook is now the default.
 
 ## Input Parameters
 
-Only these four predictors are used:
+The current prediction module uses available dataset-supported parameters:
 
+- `Compressive Strength fc' (MPa)`
+- `Modulus Ec (MPa)`
 - `w/b Ratio`
 - `Fly Ash (%)`
 - `GGBS (%)`
 - `Recycled Aggregate (%)`
+- `Yield Strength fy (MPa)`
+- `Stud Dia. ds (mm)`
+- `Span L (mm)`
+- `Beam Depth h (mm)`
+- `Slab Thickness hc (mm)`
+- `Steel Grade`
+- `Shear Connector Type`
 
-The dataset column `Recycled Agg. (%)` is safely mapped to the canonical project feature name `Recycled Aggregate (%)`.
+The workbook column `Recycled Agg. (%)` is safely mapped to `Recycled Aggregate (%)`.
 
-## Target
+## Prediction Targets
 
-- `Compressive Strength fc' (MPa)`
+- `Target: Capacity Pu (kN)` as ultimate load
+- `Target: Deflection δ (mm)` as deflection
 
-Structural variables such as span, beam geometry, steel grade, capacity, shear, and deflection are intentionally excluded to avoid target leakage and to preserve the Review 1 scope.
+The following columns are excluded from predictors to avoid leakage or future-scope behavior:
 
-## ML Models
+- `Target: Capacity Pu (kN)`
+- `Target: Deflection δ (mm)`
+- `Target: Shear Qu (kN)`
+- `Target: Failure Mode`
+- `Concrete GWP (kg CO2e/m3)`
 
-The user-facing comparison includes only:
+## Models
 
-- XGBoost Regressor
-- CatBoost Regressor
+For each target, the project trains:
 
-Both models are tuned with reproducible 5-fold cross-validation and evaluated on an 80/20 holdout split using:
+- `xgboost.XGBRegressor`
+- `catboost.CatBoostRegressor`
 
-- R²: higher is better
-- MAE: average absolute prediction error in MPa, lower is better
-- RMSE: root mean squared error in MPa, lower is better
+Models are tuned with 5-fold cross-validation and evaluated on an 80/20 holdout split using:
 
-The best model is selected automatically by highest test R², then lower RMSE, then lower MAE.
+- R²
+- MAE
+- RMSE
+
+Best model selection uses highest R², then lower RMSE, then lower MAE.
 
 ## Explainable AI
 
 SHAP is used for:
 
-- Global feature importance
+- Global feature-importance charts
 - SHAP summary plots
-- Per-prediction feature contributions
-- Deterministic human-readable explanation text
+- Per-prediction contribution tables
+- Deterministic explanation text generated from actual SHAP signs and magnitudes
 
 Feature importance describes the trained model's predictive behavior and does not by itself prove physical causation.
 
-## Project Structure
-
-```text
-compressive_strength_ai/
-|
-├── data/
-│   └── dataset_span_mm.csv
-├── models/
-│   ├── xgboost_model.pkl
-│   ├── catboost_model.pkl
-│   ├── best_model.pkl
-│   ├── model_metadata.json
-│   └── feature_ranges.json
-├── outputs/
-│   ├── figures/
-│   ├── metrics/
-│   └── shap/
-├── src/
-│   ├── __init__.py
-│   ├── config.py
-│   ├── data_loader.py
-│   ├── preprocessing.py
-│   ├── train_models.py
-│   ├── evaluate.py
-│   ├── explainability.py
-│   ├── predictor.py
-│   └── utils.py
-├── notebooks/
-│   └── optional_analysis.ipynb
-├── app.py
-├── train.py
-├── requirements.txt
-└── README.md
-```
-
 ## Installation
-
-Create a virtual environment:
 
 ```bash
 python -m venv .venv
 ```
 
-Activate on Windows:
+Windows:
 
 ```bash
 .venv\Scripts\activate
@@ -112,19 +110,25 @@ Install dependencies:
 pip install -r requirements.txt
 ```
 
-## Train Models
+## Train
+
+```bash
+python train_performance.py
+```
+
+This validates the dataset, trains XGBoost and CatBoost for ultimate load and deflection, saves model bundles, writes metrics, and generates EDA/evaluation/SHAP figures.
+
+The earlier compressive-strength-only training script remains available as:
 
 ```bash
 python train.py
 ```
 
-This command loads and validates the dataset, trains/tunes XGBoost and CatBoost, evaluates both models, saves trained artifacts, generates EDA and evaluation plots, and creates global SHAP outputs.
-
-## Run Streamlit GUI
+## Run GUI
 
 ```bash
 streamlit run app.py
 ```
 
-The GUI loads saved model files and does not retrain on interaction. If model files are missing, run `python train.py` first.
+The GUI loads saved model bundles and does not retrain on each interaction.
 
