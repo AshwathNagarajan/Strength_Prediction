@@ -38,7 +38,6 @@ The older `data/dataset_span_mm.csv` file was removed. The loader supports Excel
 The current prediction module uses available dataset-supported parameters:
 
 - `Compressive Strength fc' (MPa)`
-- `Modulus Ec (MPa)`
 - `w/b Ratio`
 - `Fly Ash (%)`
 - `GGBS (%)`
@@ -47,7 +46,7 @@ The current prediction module uses available dataset-supported parameters:
 - `Stud Dia. ds (mm)`
 - `Span L (mm)`
 - `Beam Depth h (mm)`
-- `Slab Thickness hc (mm)`
+- `Beam Width (mm)` in the GUI, backed by the available dataset column `Slab Thickness hc (mm)`
 - `Steel Grade`
 - `Shear Connector Type`
 
@@ -131,4 +130,3 @@ streamlit run app.py
 ```
 
 The GUI loads saved model bundles and does not retrain on each interaction.
-

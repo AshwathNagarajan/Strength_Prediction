@@ -4,10 +4,6 @@
       "min": 25.0,
       "max": 85.0
     },
-    "Modulus Ec (MPa)": {
-      "min": 28960.0,
-      "max": 41807.0
-    },
     "w/b Ratio": {
       "min": 0.28,
       "max": 0.55

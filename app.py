@@ -26,6 +26,15 @@ from src.utils import load_json
 
 st.set_page_config(page_title="AI Structural Performance Predictor", layout="wide")
 
+DISPLAY_NAMES = {
+    "Slab Thickness hc (mm)": "Beam Width (mm)",
+}
+
+
+def display_name(feature: str) -> str:
+    """Return the user-facing label for a model feature."""
+    return DISPLAY_NAMES.get(feature, feature)
+
 
 def image_if_exists(path: Path, caption: str | None = None) -> None:
     if path.exists():
@@ -110,7 +119,6 @@ def prediction_page(metadata: dict, predictor: PerformancePredictor) -> None:
         for index, feature in enumerate(
             [
                 "Compressive Strength fc' (MPa)",
-                "Modulus Ec (MPa)",
                 "w/b Ratio",
                 "Fly Ash (%)",
                 "GGBS (%)",
@@ -120,7 +128,7 @@ def prediction_page(metadata: dict, predictor: PerformancePredictor) -> None:
         ):
             bounds = predictor.profile["numeric_ranges"][feature]
             values[feature] = cols[index % 3].number_input(
-                feature,
+                display_name(feature),
                 value=float(defaults[feature]),
                 step=0.01 if "Ratio" in feature else 1.0,
                 help=f"Training range: {bounds['min']:g} to {bounds['max']:g}",
@@ -131,7 +139,7 @@ def prediction_page(metadata: dict, predictor: PerformancePredictor) -> None:
         for index, feature in enumerate(["Stud Dia. ds (mm)", "Span L (mm)", "Beam Depth h (mm)", "Slab Thickness hc (mm)"]):
             bounds = predictor.profile["numeric_ranges"][feature]
             values[feature] = cols[index % 3].number_input(
-                feature,
+                display_name(feature),
                 value=float(defaults[feature]),
                 step=1.0,
                 help=f"Training range: {bounds['min']:g} to {bounds['max']:g}",
@@ -177,6 +185,7 @@ def prediction_page(metadata: dict, predictor: PerformancePredictor) -> None:
             st.write("#### Why was this prediction obtained?")
             explanation = target_result["explanation"]
             contribution_df = pd.DataFrame(explanation["contributions"])
+            contribution_df["Feature"] = contribution_df["Feature"].map(display_name)
             contribution_df["Input"] = contribution_df["Input"].astype(str)
             contribution_df["SHAP Contribution"] = contribution_df["SHAP Contribution"].round(4)
             st.dataframe(contribution_df, hide_index=True, width="stretch")
@@ -242,7 +251,9 @@ def dataset_page(data: pd.DataFrame, predictor: PerformancePredictor) -> None:
     with st.expander("Dataset Preview", expanded=True):
         st.dataframe(data.head(50), width="stretch")
     with st.expander("Feature Ranges"):
-        st.dataframe(pd.DataFrame(predictor.profile["numeric_ranges"]).T, width="stretch")
+        ranges = pd.DataFrame(predictor.profile["numeric_ranges"]).T
+        ranges.index = [display_name(feature) for feature in ranges.index]
+        st.dataframe(ranges, width="stretch")
     with st.expander("Categorical Domains"):
         st.json(predictor.profile["categorical_values"])
     with st.expander("Descriptive Statistics"):

@@ -1,9 +1,8 @@
 {
   "rows": 2000,
-  "columns": 15,
+  "columns": 14,
   "selected_columns": [
     "Compressive Strength fc' (MPa)",
-    "Modulus Ec (MPa)",
     "w/b Ratio",
     "Fly Ash (%)",
     "GGBS (%)",
@@ -20,7 +19,6 @@
   ],
   "source_column_mapping": {
     "Compressive Strength fc' (MPa)": "Compressive Strength fc' (MPa)",
-    "Modulus Ec (MPa)": "Modulus Ec (MPa)",
     "w/b Ratio": "w/b Ratio",
     "Fly Ash (%)": "Fly Ash (%)",
     "GGBS (%)": "GGBS (%)",
@@ -37,7 +35,6 @@
   },
   "dtypes": {
     "Compressive Strength fc' (MPa)": "float64",
-    "Modulus Ec (MPa)": "int64",
     "w/b Ratio": "float64",
     "Fly Ash (%)": "float64",
     "GGBS (%)": "float64",
@@ -54,7 +51,6 @@
   },
   "missing_values": {
     "Compressive Strength fc' (MPa)": 0,
-    "Modulus Ec (MPa)": 0,
     "w/b Ratio": 0,
     "Fly Ash (%)": 0,
     "GGBS (%)": 0,
@@ -80,16 +76,6 @@
       "50%": 55.75,
       "75%": 70.225,
       "max": 85.0
-    },
-    "Modulus Ec (MPa)": {
-      "count": 2000.0,
-      "mean": 36337.663,
-      "std": 3645.8915141426587,
-      "min": 28960.0,
-      "25%": 33445.0,
-      "50%": 36838.0,
-      "75%": 39479.25,
-      "max": 41807.0
     },
     "w/b Ratio": {
       "count": 2000.0,

@@ -1,19 +1,18 @@
 feature,mean_abs_shap
-Compressive Strength fc' (MPa),2143.717
-Slab Thickness hc (mm),1461.4167
-Modulus Ec (MPa),89.74208
-Yield Strength fy (MPa),50.407238
-GGBS (%),22.432623
-w/b Ratio,15.465303
-Fly Ash (%),14.544299
-Recycled Aggregate (%),13.902396
-Span L (mm),9.265981
-Beam Depth h (mm),9.245534
-Stud Dia. ds (mm),5.4896636
-Steel Grade_S275,4.35412
-Steel Grade_S355,0.9907865
-Steel Grade_S690,0.9223351
-Shear Connector Type_Perfobond Ribbon,0.7851129
-Shear Connector Type_Headed Stud,0.5826571
-Steel Grade_S460,0.40192965
-Shear Connector Type_Angle Connector,0.2064169
+Compressive Strength fc' (MPa),2225.3904
+Slab Thickness hc (mm),1458.8116
+Yield Strength fy (MPa),49.982273
+GGBS (%),22.596685
+Fly Ash (%),16.909967
+w/b Ratio,16.674103
+Recycled Aggregate (%),15.03108
+Span L (mm),10.967752
+Beam Depth h (mm),9.877892
+Stud Dia. ds (mm),5.429451
+Steel Grade_S275,3.8715148
+Steel Grade_S355,1.3404396
+Shear Connector Type_Perfobond Ribbon,1.2304281
+Steel Grade_S690,1.1483672
+Steel Grade_S460,0.74882096
+Shear Connector Type_Headed Stud,0.44673842
+Shear Connector Type_Angle Connector,0.20944244

@@ -14,7 +14,6 @@ PERFORMANCE_SHAP_DIR = PERFORMANCE_OUTPUT_DIR / "shap"
 
 NUMERIC_FEATURES = [
     "Compressive Strength fc' (MPa)",
-    "Modulus Ec (MPa)",
     "w/b Ratio",
     "Fly Ash (%)",
     "GGBS (%)",
@@ -56,4 +55,3 @@ LEAKAGE_COLUMNS = [
 
 METADATA_FILE = PERFORMANCE_MODEL_DIR / "performance_model_metadata.json"
 FEATURE_PROFILE_FILE = PERFORMANCE_MODEL_DIR / "performance_feature_profile.json"
-

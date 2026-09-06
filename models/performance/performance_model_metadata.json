@@ -4,7 +4,6 @@
     "rows_used_after_preprocessing": 2000,
     "features": [
       "Compressive Strength fc' (MPa)",
-      "Modulus Ec (MPa)",
       "w/b Ratio",
       "Fly Ash (%)",
       "GGBS (%)",
@@ -19,7 +18,6 @@
     ],
     "numeric_features": [
       "Compressive Strength fc' (MPa)",
-      "Modulus Ec (MPa)",
       "w/b Ratio",
       "Fly Ash (%)",
       "GGBS (%)",
@@ -48,7 +46,6 @@
     },
     "source_column_mapping": {
       "Compressive Strength fc' (MPa)": "Compressive Strength fc' (MPa)",
-      "Modulus Ec (MPa)": "Modulus Ec (MPa)",
       "w/b Ratio": "w/b Ratio",
       "Fly Ash (%)": "Fly Ash (%)",
       "GGBS (%)": "GGBS (%)",
@@ -76,28 +73,28 @@
       "best_model": "XGBoost",
       "metrics": {
         "XGBoost": {
-          "r2": 0.9979733866589426,
-          "mae": 107.70253222656251,
-          "rmse": 145.31809702102217
+          "r2": 0.9978287113096797,
+          "mae": 111.06208447265621,
+          "rmse": 150.41565475658535
         },
         "CatBoost": {
-          "r2": 0.9969618386555823,
-          "mae": 135.44601137266912,
-          "rmse": 177.92610442984247
+          "r2": 0.9967379042502077,
+          "mae": 136.88763161547402,
+          "rmse": 184.36675235653456
         }
       },
       "cross_validation": {
         "XGBoost": {
-          "cv_r2_mean": 0.9976099869417713,
-          "cv_r2_std": 0.0002356943639800757,
-          "cv_mae_mean": 108.70027526855469,
-          "cv_rmse_mean": 148.87040156007944
+          "cv_r2_mean": 0.9973578311187902,
+          "cv_r2_std": 0.0002906063335029057,
+          "cv_mae_mean": 115.93029840087891,
+          "cv_rmse_mean": 156.53485641796036
         },
         "CatBoost": {
-          "cv_r2_mean": 0.9964939083547169,
-          "cv_r2_std": 0.0005176106026522403,
-          "cv_mae_mean": 134.88270856111066,
-          "cv_rmse_mean": 179.98213781752528
+          "cv_r2_mean": 0.9963898373101514,
+          "cv_r2_std": 0.0005285987210130251,
+          "cv_mae_mean": 136.6665876831959,
+          "cv_rmse_mean": 182.75054892988774
         }
       },
       "best_params": {
@@ -127,28 +124,28 @@
       "best_model": "CatBoost",
       "metrics": {
         "XGBoost": {
-          "r2": 0.9374757782957742,
-          "mae": 0.2553560997962952,
-          "rmse": 0.3346161340391875
+          "r2": 0.9362927270205723,
+          "mae": 0.25804649724960327,
+          "rmse": 0.3377670165270167
         },
         "CatBoost": {
-          "r2": 0.9390557928590534,
-          "mae": 0.2528851895614047,
-          "rmse": 0.33036113220150287
+          "r2": 0.9396837299544086,
+          "mae": 0.25037516237030033,
+          "rmse": 0.3286547917311491
         }
       },
       "cross_validation": {
         "XGBoost": {
-          "cv_r2_mean": 0.9337167240584481,
-          "cv_r2_std": 0.0064798932784006676,
-          "cv_mae_mean": 0.2610696551203727,
-          "cv_rmse_mean": 0.32726659771461664
+          "cv_r2_mean": 0.9339859188001753,
+          "cv_r2_std": 0.006153164616749438,
+          "cv_mae_mean": 0.26041052632331846,
+          "cv_rmse_mean": 0.3266577877850314
         },
         "CatBoost": {
-          "cv_r2_mean": 0.9343090870879566,
-          "cv_r2_std": 0.005060230811427116,
-          "cv_mae_mean": 0.25823100895745793,
-          "cv_rmse_mean": 0.32590474338200803
+          "cv_r2_mean": 0.9339609919333179,
+          "cv_r2_std": 0.006173504970188786,
+          "cv_mae_mean": 0.2582116561429159,
+          "cv_rmse_mean": 0.3266253177967512
         }
       },
       "best_params": {
