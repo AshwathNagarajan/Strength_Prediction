@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from typing import Any
+import re
 
 import joblib
 import numpy as np
@@ -51,7 +52,7 @@ class PerformancePredictor:
         row: dict[str, Any] = {}
         for feature in NUMERIC_FEATURES:
             try:
-                row[feature] = float(values[feature])
+                row[feature] = self._coerce_numeric(values[feature])
             except (KeyError, TypeError, ValueError) as exc:
                 raise ValueError(f"{feature} must be numeric.") from exc
         for feature in CATEGORICAL_FEATURES:
@@ -60,6 +61,24 @@ class PerformancePredictor:
                 raise ValueError(f"{feature} is required.")
             row[feature] = value
         return pd.DataFrame([row], columns=FEATURES)
+
+    @staticmethod
+    def _coerce_numeric(value: Any) -> float:
+        """Convert user-entered numeric values, including simple bracketed scientific notation."""
+        if isinstance(value, (list, tuple, np.ndarray, pd.Series)):
+            if len(value) != 1:
+                raise ValueError("Expected a single numeric value.")
+            value = list(value)[0]
+        if isinstance(value, str):
+            text = value.strip()
+            if text.startswith("[") and text.endswith("]"):
+                text = text[1:-1].strip()
+            text = text.replace(",", "")
+            match = re.fullmatch(r"[-+]?(?:\d+(?:\.\d*)?|\.\d+)(?:[eE][-+]?\d+)?", text)
+            if not match:
+                raise ValueError(f"Could not parse numeric value: {value!r}")
+            return float(text)
+        return float(value)
 
     def domain_warnings(self, input_df: pd.DataFrame) -> list[str]:
         """Warn when inputs are outside observed dataset domains."""
@@ -162,4 +181,3 @@ class PerformancePredictor:
             "contributions": rows,
             "text": text,
         }
-
