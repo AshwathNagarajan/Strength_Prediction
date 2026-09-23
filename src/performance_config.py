@@ -4,7 +4,7 @@ from pathlib import Path
 
 from .config import DATA_DIR, MODEL_DIR, OUTPUT_DIR, RANDOM_STATE
 
-DATASET_PATH = DATA_DIR / "ScienceDirect_Optimized_SpanLength_With_ConcreteGrade.xlsx"
+DATASET_PATH = DATA_DIR / "Combined_ScienceDirect_SteelConcrete_Performance_4000.xlsx"
 
 PERFORMANCE_MODEL_DIR = MODEL_DIR / "performance"
 PERFORMANCE_OUTPUT_DIR = OUTPUT_DIR / "performance"
@@ -26,6 +26,7 @@ NUMERIC_FEATURES = [
 ]
 
 CATEGORICAL_FEATURES = [
+    "Concrete Grade",
     "Steel Grade",
     "Shear Connector Type",
 ]

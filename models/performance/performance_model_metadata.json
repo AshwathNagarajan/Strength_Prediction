@@ -1,7 +1,7 @@
 {
   "dataset": {
-    "path": "D:\\Civil-II\\data\\ScienceDirect_Optimized_SpanLength_With_ConcreteGrade.xlsx",
-    "rows_used_after_preprocessing": 2000,
+    "path": "D:\\Civil-II\\data\\Combined_ScienceDirect_SteelConcrete_Performance_4000.xlsx",
+    "rows_used_after_preprocessing": 4000,
     "features": [
       "Compressive Strength fc' (MPa)",
       "w/b Ratio",
@@ -13,6 +13,7 @@
       "Span L (mm)",
       "Beam Depth h (mm)",
       "Slab Thickness hc (mm)",
+      "Concrete Grade",
       "Steel Grade",
       "Shear Connector Type"
     ],
@@ -29,6 +30,7 @@
       "Slab Thickness hc (mm)"
     ],
     "categorical_features": [
+      "Concrete Grade",
       "Steel Grade",
       "Shear Connector Type"
     ],
@@ -55,6 +57,7 @@
       "Span L (mm)": "Span L (mm)",
       "Beam Depth h (mm)": "Beam Depth h (mm)",
       "Slab Thickness hc (mm)": "Slab Thickness hc (mm)",
+      "Concrete Grade": "Concrete Grade",
       "Steel Grade": "Steel Grade",
       "Shear Connector Type": "Shear Connector Type",
       "Target: Capacity Pu (kN)": "Target: Capacity Pu (kN)",
@@ -73,40 +76,40 @@
       "best_model": "XGBoost",
       "metrics": {
         "XGBoost": {
-          "r2": 0.9978287113096797,
-          "mae": 111.06208447265621,
-          "rmse": 150.41565475658535
+          "r2": 0.9987792882316551,
+          "mae": 70.67565808105468,
+          "rmse": 109.31561206236535
         },
         "CatBoost": {
-          "r2": 0.9967379042502077,
-          "mae": 136.88763161547402,
-          "rmse": 184.36675235653456
+          "r2": 0.9977882113394659,
+          "mae": 107.96176944280477,
+          "rmse": 147.1456536762144
         }
       },
       "cross_validation": {
         "XGBoost": {
-          "cv_r2_mean": 0.9973578311187902,
-          "cv_r2_std": 0.0002906063335029057,
-          "cv_mae_mean": 115.93029840087891,
-          "cv_rmse_mean": 156.53485641796036
+          "cv_r2_mean": 0.9984745318934042,
+          "cv_r2_std": 0.00014521388351430105,
+          "cv_mae_mean": 79.32497305297852,
+          "cv_rmse_mean": 119.99053490904768
         },
         "CatBoost": {
-          "cv_r2_mean": 0.9963898373101514,
-          "cv_r2_std": 0.0005285987210130251,
-          "cv_mae_mean": 136.6665876831959,
-          "cv_rmse_mean": 182.75054892988774
+          "cv_r2_mean": 0.9976054053832423,
+          "cv_r2_std": 0.00029372737634428926,
+          "cv_mae_mean": 112.49608351114212,
+          "cv_rmse_mean": 150.20937269402015
         }
       },
       "best_params": {
         "XGBoost": {
-          "colsample_bytree": 0.9486212527455787,
-          "learning_rate": 0.05781039920323071,
-          "max_depth": 5,
-          "min_child_weight": 4,
-          "n_estimators": 529,
-          "reg_alpha": 0.13799959101127168,
-          "reg_lambda": 1.0925470114081648,
-          "subsample": 0.7495800817189007
+          "colsample_bytree": 0.9949692657420364,
+          "learning_rate": 0.07101154718975758,
+          "max_depth": 6,
+          "min_child_weight": 3,
+          "n_estimators": 284,
+          "reg_alpha": 0.08526206184364576,
+          "reg_lambda": 0.630103185970559,
+          "subsample": 0.9846656611759999
         },
         "CatBoost": {
           "bagging_temperature": 0.3745401188473625,
@@ -117,59 +120,59 @@
           "random_strength": 0.31203728088487304
         }
       },
-      "train_rows": 1600,
-      "test_rows": 400
+      "train_rows": 3200,
+      "test_rows": 800
     },
     "deflection": {
-      "best_model": "CatBoost",
+      "best_model": "XGBoost",
       "metrics": {
         "XGBoost": {
-          "r2": 0.9362927270205723,
-          "mae": 0.25804649724960327,
-          "rmse": 0.3377670165270167
+          "r2": 0.9760902258738325,
+          "mae": 0.1199997632980347,
+          "rmse": 0.19185990016641763
         },
         "CatBoost": {
-          "r2": 0.9396837299544086,
-          "mae": 0.25037516237030033,
-          "rmse": 0.3286547917311491
+          "r2": 0.9613590105214199,
+          "mae": 0.1875276015687354,
+          "rmse": 0.24390494020714928
         }
       },
       "cross_validation": {
         "XGBoost": {
-          "cv_r2_mean": 0.9339859188001753,
-          "cv_r2_std": 0.006153164616749438,
-          "cv_mae_mean": 0.26041052632331846,
-          "cv_rmse_mean": 0.3266577877850314
+          "cv_r2_mean": 0.9695250852710438,
+          "cv_r2_std": 0.0027252315289544716,
+          "cv_mae_mean": 0.1470401671051979,
+          "cv_rmse_mean": 0.22600644047117102
         },
         "CatBoost": {
-          "cv_r2_mean": 0.9339609919333179,
-          "cv_r2_std": 0.006173504970188786,
-          "cv_mae_mean": 0.2582116561429159,
-          "cv_rmse_mean": 0.3266253177967512
+          "cv_r2_mean": 0.9577073844260161,
+          "cv_r2_std": 0.004525509972732193,
+          "cv_mae_mean": 0.20409916373558593,
+          "cv_rmse_mean": 0.2659797212579829
         }
       },
       "best_params": {
         "XGBoost": {
-          "colsample_bytree": 0.9896896099223678,
-          "learning_rate": 0.11200768177397533,
-          "max_depth": 2,
+          "colsample_bytree": 0.9187021504122961,
+          "learning_rate": 0.10755244160231349,
+          "max_depth": 6,
           "min_child_weight": 2,
-          "n_estimators": 202,
-          "reg_alpha": 0.1154469128110745,
-          "reg_lambda": 0.9820509320520234,
-          "subsample": 0.9049790556476374
+          "n_estimators": 380,
+          "reg_alpha": 0.32553851275097223,
+          "reg_lambda": 2.3299193510875615,
+          "subsample": 0.9550115733369398
         },
         "CatBoost": {
-          "bagging_temperature": 0.8331949117361643,
-          "depth": 4,
-          "iterations": 405,
-          "l2_leaf_reg": 4.128484860585926,
-          "learning_rate": 0.03686833053456748,
-          "random_strength": 1.510722820635305
+          "bagging_temperature": 0.3745401188473625,
+          "depth": 6,
+          "iterations": 470,
+          "l2_leaf_reg": 6.855951534491241,
+          "learning_rate": 0.08683901810364439,
+          "random_strength": 0.31203728088487304
         }
       },
-      "train_rows": 1600,
-      "test_rows": 400
+      "train_rows": 3200,
+      "test_rows": 800
     }
   }
 }

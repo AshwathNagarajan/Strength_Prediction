@@ -133,6 +133,8 @@ def prediction_page(metadata: dict, predictor: PerformancePredictor) -> None:
                 step=0.01 if "Ratio" in feature else 1.0,
                 help=f"Training range: {bounds['min']:g} to {bounds['max']:g}",
             )
+        concrete_grades = predictor.profile["categorical_values"]["Concrete Grade"]
+        values["Concrete Grade"] = cols[0].selectbox("Concrete Grade", concrete_grades, index=0)
 
     with st.expander("Beam and Connector Parameters", expanded=True):
         cols = st.columns(3)
@@ -146,7 +148,7 @@ def prediction_page(metadata: dict, predictor: PerformancePredictor) -> None:
             )
 
         cat_cols = st.columns(2)
-        for index, feature in enumerate(CATEGORICAL_FEATURES):
+        for index, feature in enumerate(["Steel Grade", "Shear Connector Type"]):
             categories = predictor.profile["categorical_values"][feature]
             values[feature] = cat_cols[index].selectbox(feature, categories, index=0)
 

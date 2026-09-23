@@ -28,16 +28,17 @@ Not implemented in this review:
 The default dataset is:
 
 ```text
-data/ScienceDirect_Optimized_SpanLength_With_ConcreteGrade.xlsx
+data/Combined_ScienceDirect_SteelConcrete_Performance_4000.xlsx
 ```
 
-The older `data/dataset_span_mm.csv` file was removed. The loader supports Excel and CSV files, but this Excel workbook is now the default.
+The combined workbook contains the original project dataset plus the market steel-grade dataset. The older `data/dataset_span_mm.csv` file was removed. The loader supports Excel and CSV files, but this combined Excel workbook is now the default.
 
 ## Input Parameters
 
 The current prediction module uses available dataset-supported parameters:
 
 - `Compressive Strength fc' (MPa)`
+- `Concrete Grade`
 - `w/b Ratio`
 - `Fly Ash (%)`
 - `GGBS (%)`
