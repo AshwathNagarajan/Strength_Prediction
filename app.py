@@ -28,6 +28,8 @@ st.set_page_config(page_title="AI Structural Performance Predictor", layout="wid
 
 DISPLAY_NAMES = {
     "Slab Thickness hc (mm)": "Beam Width (mm)",
+    "Stud Dia. ds (mm)": "Steel Thickness / Stud Dia. (mm)",
+    "Compressive Strength fc' (MPa)": "Concrete Strength fc' (MPa)",
 }
 
 

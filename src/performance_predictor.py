@@ -123,6 +123,29 @@ class PerformancePredictor:
             }
         return output
 
+    def predict_without_explanation(self, values: dict[str, Any]) -> dict[str, Any]:
+        """Predict targets quickly without calculating SHAP values."""
+        input_df = self.input_frame(values)
+        output: dict[str, Any] = {"domain_warnings": self.domain_warnings(input_df), "targets": {}}
+        for target_key, target in TARGETS.items():
+            bundle = self.bundles[target_key]
+            transformed = transformed_frame(bundle["preprocessor"], input_df)
+            predictions = {
+                name: float(model.predict(transformed)[0])
+                for name, model in bundle["models"].items()
+            }
+            best_name = bundle["best_model"]
+            output["targets"][target_key] = {
+                "label": target["label"],
+                "unit": target["unit"],
+                "xgboost_prediction": predictions["XGBoost"],
+                "catboost_prediction": predictions["CatBoost"],
+                "best_model": best_name,
+                "best_prediction": predictions[best_name],
+                "difference_between_models": abs(predictions["XGBoost"] - predictions["CatBoost"]),
+            }
+        return output
+
     def _explain(self, model, transformed: pd.DataFrame, original_input: pd.DataFrame, target_label: str, unit: str) -> dict[str, Any]:
         explainer = shap.TreeExplainer(model)
         values = np.asarray(explainer.shap_values(transformed))

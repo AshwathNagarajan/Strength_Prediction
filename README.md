@@ -1,133 +1,154 @@
-# AI-Driven Support System for Sustainable Steel-Concrete Composite Structures
+# Sustainable Composite Beam AI
 
-## Review Scope
+Research and decision-support software for dataset-driven structural performance prediction, SHAP explainability, and sustainable material optimization. Numerical values come only from trained regressors, SHAP, dataset constraints, and optimization algorithms. Hugging Face is optional and is limited to parsing and explaining verified results.
 
-This review implementation covers **prediction and explainable AI only**.
+The original Streamlit review application remains available. The complete dynamic application uses a FastAPI backend and Vite/React frontend, with CSV, XLSX, JSON, and Joblib files instead of a database.
 
-Implemented:
+## Capabilities
 
-- Ultimate load prediction
-- Deflection prediction
-- XGBoost vs CatBoost model comparison
-- Automatic best-model selection for each target
-- SHAP global feature importance
-- SHAP local explanation for each user prediction
-- Streamlit GUI
+- CSV/XLSX upload, preview, statistics, missing values, duplicates, IQR outliers, suspicious ranges, correlations, and strong-correlation warnings.
+- Dynamic column roles, labels, units, categories, continuous/discrete metadata, optimization flags, and sustainability objectives.
+- Leakage-safe sklearn pipelines for numerical and categorical inputs.
+- Single- and multi-target regression with Linear, Ridge, Random Forest, Extra Trees, Gradient Boosting, MLP, XGBoost, LightGBM when installed, and CatBoost.
+- Holdout metrics, cross-validation, best-model selection, timestamped model versions, and active model metadata.
+- Dynamic prediction forms, experimental-domain classification, prediction history, and explicit uncertainty limitations.
+- Per-target local and global SHAP values with deterministic engineering-language fallback.
+- Bounded random/grid, genetic, and Pareto/NSGA-II optimization with fixed, categorical, stepped, and discrete variables.
+- Optional Hugging Face API or local Transformers explanations; numerical services continue when HF is unavailable.
+- JSON/CSV exports for predictions, optimization solutions, model metrics, and SHAP importance.
 
-Not implemented in this review:
+## Safety
 
-- Material optimization
-- Target-performance inverse design
-- Genetic algorithms
-- GWP optimization
-- Shear prediction
-- Failure-mode classification
+This system is a research and decision-support tool based on experimental data and machine-learning predictions. Final structural design must be verified using applicable design codes, engineering calculations, and qualified professional review.
 
-## Default Dataset
+SHAP describes how the trained model used each feature. It does not prove physical causality. Optimization never expands beyond the observed experimental feature ranges.
 
-The default dataset is:
+## Architecture
 
 ```text
-data/Combined_ScienceDirect_SteelConcrete_Performance_4000.xlsx
+CSV/XLSX -> validation -> saved schema -> preprocessing pipeline
+         -> model comparison -> active model
+         -> prediction -> domain guard -> SHAP
+         -> grid / GA / NSGA-II optimization
+         -> optional HF explanation -> React dashboard -> JSON/CSV export
 ```
 
-The combined workbook contains the original project dataset plus the market steel-grade dataset. The older `data/dataset_span_mm.csv` file was removed. The loader supports Excel and CSV files, but this combined Excel workbook is now the default.
+- `backend/app/api/routes/`: FastAPI endpoints
+- `backend/app/ml/`: loading, validation, training, prediction, and registry
+- `backend/app/explainability/`: local/global SHAP
+- `backend/app/optimization/`: constrained search and Pareto filtering
+- `backend/app/hf/`: optional parsing and explanation with fallback
+- `backend/config/`: file-based dataset/model state
+- `backend/artifacts/`: versioned models, preprocessors, reports, and exports
+- `frontend/src/pages/`: routed engineering workflow
+- `app.py`: preserved Streamlit review application
 
-## Input Parameters
+## Requirements
 
-The current prediction module uses available dataset-supported parameters:
+- Windows
+- Python 3.12
+- Node.js 20 or newer
 
-- `Compressive Strength fc' (MPa)`
-- `Concrete Grade`
-- `w/b Ratio`
-- `Fly Ash (%)`
-- `GGBS (%)`
-- `Recycled Aggregate (%)`
-- `Yield Strength fy (MPa)`
-- `Stud Dia. ds (mm)`
-- `Span L (mm)`
-- `Beam Depth h (mm)`
-- `Beam Width (mm)` in the GUI, backed by the available dataset column `Slab Thickness hc (mm)`
-- `Steel Grade`
-- `Shear Connector Type`
+## Backend Setup
 
-The workbook column `Recycled Agg. (%)` is safely mapped to `Recycled Aggregate (%)`.
-
-## Prediction Targets
-
-- `Target: Capacity Pu (kN)` as ultimate load
-- `Target: Deflection δ (mm)` as deflection
-
-The following columns are excluded from predictors to avoid leakage or future-scope behavior:
-
-- `Target: Capacity Pu (kN)`
-- `Target: Deflection δ (mm)`
-- `Target: Shear Qu (kN)`
-- `Target: Failure Mode`
-- `Concrete GWP (kg CO2e/m3)`
-
-## Models
-
-For each target, the project trains:
-
-- `xgboost.XGBRegressor`
-- `catboost.CatBoostRegressor`
-
-Models are tuned with 5-fold cross-validation and evaluated on an 80/20 holdout split using:
-
-- R²
-- MAE
-- RMSE
-
-Best model selection uses highest R², then lower RMSE, then lower MAE.
-
-## Explainable AI
-
-SHAP is used for:
-
-- Global feature-importance charts
-- SHAP summary plots
-- Per-prediction contribution tables
-- Deterministic explanation text generated from actual SHAP signs and magnitudes
-
-Feature importance describes the trained model's predictive behavior and does not by itself prove physical causation.
-
-## Installation
-
-```bash
+```powershell
+cd backend
 python -m venv .venv
-```
-
-Windows:
-
-```bash
 .venv\Scripts\activate
-```
-
-Install dependencies:
-
-```bash
+python -m pip install --upgrade pip
 pip install -r requirements.txt
+python -m uvicorn app.main:app --reload --port 8000
 ```
 
-## Train
+API documentation is available at `http://localhost:8000/docs`.
 
-```bash
-python train_performance.py
+## Frontend Setup
+
+```powershell
+cd frontend
+npm install
+npm run dev
 ```
 
-This validates the dataset, trains XGBoost and CatBoost for ultimate load and deflection, saves model bundles, writes metrics, and generates EDA/evaluation/SHAP figures.
+Open `http://localhost:5173`. Copy `frontend/.env.example` to `frontend/.env` only when the API URL needs to change.
 
-The earlier compressive-strength-only training script remains available as:
+After dependencies are installed, `run_project.bat` starts both services in separate Windows command windows.
 
-```bash
-python train.py
-```
+## Streamlit Review App
 
-## Run GUI
-
-```bash
+```powershell
+pip install -r requirements.txt
 streamlit run app.py
 ```
 
-The GUI loads saved model bundles and does not retrain on each interaction.
+The Streamlit app uses the established artifacts under the root `models/` folder and is isolated from dynamic backend artifacts.
+
+## Workflow
+
+1. Open **Dataset** and upload a CSV or XLSX workbook.
+2. Assign every column as input, target, identifier, or ignored; set units and optimization metadata.
+3. Review quality findings and save the schema.
+4. Open **Model Training**, choose split/CV settings, and train candidate models.
+5. Review the selected model and metrics.
+6. Open **Prediction**, enter dataset-derived inputs, and inspect outputs, domain status, SHAP, and history.
+7. Open **Optimization**, set structural targets and select baseline, GA, or NSGA-II.
+8. Inspect alternatives and the Pareto front in **Results**, then download reports.
+
+The included `backend/data/sample/synthetic_beam_demo.csv` is labelled **SYNTHETIC DEMONSTRATION DATA - NOT FOR ENGINEERING USE**. A real dataset can replace it without source changes; remap columns in the Dataset page.
+
+## Hugging Face
+
+Configure `backend/.env` from `backend/.env.example`:
+
+```dotenv
+HF_PROVIDER=disabled
+HF_MODEL_ID=
+HF_TOKEN=
+```
+
+Use `HF_PROVIDER=api` for the Inference API or `HF_PROVIDER=local` for Transformers. If configuration, network access, output parsing, or inference fails, deterministic explanations and parsing remain available. Never commit a real token.
+
+## Main API
+
+- `GET /api/health`
+- `POST /api/dataset/upload`
+- `GET /api/dataset/info`
+- `POST /api/dataset/schema`
+- `GET /api/dataset/quality`
+- `GET /api/dataset/ranges`
+- `POST /api/training/train`
+- `GET /api/training/status`
+- `GET /api/training/results`
+- `GET /api/models/best`
+- `POST /api/predict`
+- `GET|DELETE /api/prediction/history`
+- `POST /api/explain/local`
+- `GET /api/explain/global`
+- `POST /api/optimization/parse-request`
+- `POST /api/optimization/run`
+- `GET /api/optimization/config`
+- `GET /api/reports/model-comparison`
+- `GET /api/reports/prediction`
+- `GET /api/reports/optimization`
+- `GET /api/reports/feature-importance`
+
+JSON endpoints use `{ "success", "message", "data" }`; errors use `{ "success": false, "message", "details" }`.
+
+## Tests
+
+```powershell
+cd backend
+python -m pytest -q
+
+cd ..\frontend
+npm test
+npm run build
+```
+
+## Limitations
+
+- Predictions are empirical ML estimates and are unreliable outside representative data coverage.
+- The displayed domain-similarity label is descriptive, not a calibrated confidence interval.
+- HF text is explanatory only and has no numerical authority.
+- Cost or carbon objectives are available only when the uploaded dataset and schema explicitly provide those fields.
+- Large local Transformer models may require substantial memory; HF can remain disabled.
